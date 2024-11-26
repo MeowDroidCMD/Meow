@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gallery of Memories</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+        <style>
+            /* Add this CSS for modal layout */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.8);
+                justify-content: center;
+                align-items: center;
+            }
+            .modal-content {
+                max-width: 50%;
+                max-height: 80%;
+                margin-right: 20px;
+            }
+            .description-box {
+                color: white;
+                font-size: 1.2em;
+                max-width: 40%;
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 20px;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+            }
+            .close {
+                color: white;
+                font-size: 2em;
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                cursor: pointer;
+            }
+             /* Button Styles */
+        .subpage-button, .back-button {
+            background-color: #b22222; /* Button background color */
+            color: #fff; /* Text color */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding around text */
+            font-size: 1.2em; /* Font size */
+            cursor: pointer; /* Pointer on hover */
+            transition: transform 0.1s ease, background-color 0.3s ease; /* Smooth transitions */
+            margin: 10px; /* Space between buttons */
+        }
+        /* Hover Effect */
+        .subpage-button:hover, .back-button:hover {
+            background-color: #ff7f7f; /* Lighter shade on hover */
+            box-shadow: 0 0 10px rgba(255, 127, 127, 0.8); /* Glow effect on hover */
+        }
+
+        /* Bubble Pop Animation */
+        .subpage-button:active, .back-button:active {
+            transform: scale(0.9); /* Scale down the button when clicked */
+            transition: transform 0.1s ease; /* Quick transition for scale */
+        }
+
+        /* Add a subtle animation for the buttons */
+        .subpage-button, .back-button {
+            animation: pop 0.3s ease forwards; /* Animation when the button is added */
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.9); /* Start smaller */
+            }
+            100% {
+                transform: scale(1); /* End at normal size */
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <!-- Header Section -->
+        <header>
+            <h1>Happy 23rd Monthsary, Langga!</h1>
+            <p>Celebrating 23 months of love and memories</p>
+            <button class="subpage-button" onclick="location.href='subpage.html'">View Special Moments</button>
+            <button class="subpage-button" onclick="location.href='subpage2.html'">Explore More Memories</button>
+        </header>
+        <!-- Personal Message Section -->
+        <section id="message">
+            <p>
+           Thank you for being there for me my beloved Langga.
+            </p>
+        </section>
+
+        <!-- Gallery Section with Captions and Dates -->
+        <section id="gallery">
+            <h2>Gallery of Memories</h2>
+            <div class="gallery-grid">
+                <figure id="section1">
+                    <img src="images/memories.jpg" alt="Memory 1" onclick="openModal('images/memories.jpg', 'This day was one of the best adventures we’ve shared. We enjoyed our time at Danao City Park and spent the day there, carefree and happy, just like simple-minded kids.')">
+                    <figcaption>
+                        <span class="date-label">June 8, 2024</span>
+                        <p>Danao City adventure together!!.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section2">
+                    <img src="images/memories1.jpg" alt="Memory 2" onclick="openModal('images/memories1.jpg', 'We attended a mass and prayed for safe journeys in the future. During the service, we couldn’t help but talk a lot. You kept telling me to be quiet and focus, but I didn’t listen and kept teasing you until we both ended up laughing at ourselves for being so distracted. We apologized to God afterward and moved on with our day. It’s such a funny and unforgettable memory that perfectly reflects our bond—playful, loving, and sincere. HAHAHAHA!')">
+                    <figcaption>
+                        <span class="date-label">June 11, 2024</span>
+                        <p>A day at St.Joseph church, unforgettable!</p>
+                    </figcaption>
+                </figure>
+                <figure id="section3">
+                    <img src="images/memories2.jpg" alt="Memory 3" onclick="openModal('images/memories2.jpg', 'We shared so much in this memory, pushing ourselves beyond our limits. We tried things we never thought we could because of our fears—especially the carnival rides. But together, we decided to conquer those fears, riding the Vikings and the Ferris Wheel. It was thrilling, terrifying, and so much fun all at the same time! We laughed, screamed, and made memories that will stay with us forever. It’s moments like these that make every adventure with you so special!')">
+                    <figcaption>
+                        <span class="date-label">October 13, 2023</span>
+                        <p>Basak Fiesta Date!! part 1</p>
+                    </figcaption>
+                </figure>
+                <figure id="section4">
+                    <img src="images/memories3.jpg" alt="Memory 4" onclick="openModal('images/memories3.jpg', 'That day was truly unforgettable! We had dinner together, enjoying some delicious ramen and side dishes. Although I lost my cash that day, which made things a bit challenging (HAHAHA), it was still worth it. Afterward, I walked you home, capping off a night full of unexpected twists. My favorite part was riding the Vikings. We sat at the tip of the ship, experiencing its scariest moments. You even lost consciousness a few times, but don’t worry—I was right there to protect you, holding your head safely.')">
+                    <figcaption>
+                        <span class="date-label">October 13, 2023</span>
+                        <p>Basak Fiesta Date!! part 2</p>
+                    </figcaption>
+                </figure>
+                <figure id="section5">
+                    <img src="images/memories4.jpg" alt="Memory 5" onclick="openModal('images/memories4.jpg', 'This day was truly full of adventure and unforgettable moments. We visited so many places, savoring every bit of what life had to offer. We started at SM Cebu City, strolling through the mall, talking about random things, and laughing at funny moments we noticed (HAHAHA). From there, we headed to Cebu City’s Sto. Niño Cathedral to send our prayers to our Almighty Lord Jesus Christ. Afterward, we walked together to Plaza Independencia, where we decided to explore the museum nearby. Of course, it was filled with laughter at our hilarious antics (HAHAHA). The day ended peacefully at the park, sharing conversations with our friends and enjoying the calm evening. It was one of those memories I’ll cherish forever, and having you by my side made it all the more special. I love keeping you in my thoughts—you’re truly my greatest treasure.')">
+                    <figcaption>
+                        <span class="date-label">October 15, 2023</span>
+                        <p>SM City Cebu Starbucks Caffee Date</p>
+                    </figcaption>
+                </figure>
+                <figure id="section6">
+                    <img src="images/memories5.jpg" alt="Memory 6" onclick="openModal('images/memories5.jpg', 'This part of the day at Plaza Independencia felt like a dream, where we enjoyed the best moments of our lives without a single worry or distraction. This memory holds a special place in my heart because it captured the purest joy in your smiles and actions. Your eyes sparkled like fallen stars from the heavens, your presence felt angelic, and your smile melted my very being. It was truly a breathtaking sight of love, one that I will treasure forever.')">
+                    <figcaption>
+                        <span class="date-label">October 15, 2023</span>
+                        <p>Plaza Independencia Date Part 1.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section7">
+                    <img src="images/memories6.jpg" alt="Memory 7" onclick="openModal('images/memories6.jpg', 'This moment at Plaza Independencia reminded me of how deeply I love you. Being with you, free from worries or distractions, was like living in a perfect world. The way your eyes sparkle, as if carrying the light of a thousand stars, fills my heart with awe. Your presence feels divine, as if I’m standing beside an angel, and your smile—it completely disarms me, melting my very soul. Loving you is the greatest joy of my life, and every moment with you only deepens that feeling.')">
+                    <figcaption>
+                        <span class="date-label">October 15, 2023</span>
+                        <p>Plaza Independencia Date Part 2.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section8">
+                    <img src="images/memories8.jpg" alt="Memory 8" onclick="openModal('images/memories8.jpg', 'How lovely this memory is of us! It was the acquaintance party at Benedicto College, and we took this photo at our techvoc campus. I remember how shy you were, debating whether we should take the photo or not (HAHAHA). After a bit of convincing, you agreed—just to make me happy—and I’m so thankful for that choice. You looked absolutely stunning, your outfit fitting you so perfectly that it turned heads. Even in your shyness, we posed like we owned the place (HAHAHA), and I loved every second of it. It was such a beautiful day, made unforgettable by you, and I’ll always cherish it. Thank you for making it so special!')">
+                    <figcaption>
+                        <span class="date-label">October 21, 2023</span>
+                        <p>Acquaintance Party Part 1.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section9">
+                    <img src="images/memories9.jpg" alt="Memory 9" onclick="openModal('images/memories9.jpg', 'This memory means the world to me because it reminds me of how much I adore you and how deeply devoted I am to you. It was the acquaintance party at Benedicto College, and even though you were shy about taking a photo at our techvoc campus, you agreed after I pleaded—just to make me happy. That gesture alone showed your thoughtfulness, and I cherish it more than words can express. Seeing you that day, dressed so beautifully, left me in awe. You looked like a vision, and I couldn’t help but feel honored just to be by your side. Every moment with you reminds me of how lucky I am to share my life with someone so wonderful. I am endlessly devoted to you, and I’ll always strive to make you as happy as you make me.')">
+                    <figcaption>
+                        <span class="date-label">October 21, 2023</span>
+                        <p>Acquaintance Party Part 2.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section10">
+                    <img src="images/memories10.jpg" alt="Memory 10" onclick="openModal('images/memories10.jpg', 'This day was nothing short of magical—a warm and cozy escape from life’s worries. We planned it perfectly, choosing to revisit this sacred place to pray and pour out our gratitude to God. Sharing that moment with you filled my heart with so much peace and love. Being beside you, watching your quiet devotion, made me realize yet again how blessed I am to have you. It wasn’t just a lovely day—it was a moment I’ll cherish forever, wrapped in the warmth of your presence.')">
+                    <figcaption>
+                        <span class="date-label">August 19, 2024</span>
+                        <p>A cozy day in Basilica Del Sto. Niño Cathedral.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section11">
+                    <img src="images/memories11.jpg" alt="Memory 11" onclick="openModal('images/memories11.jpg', 'And at last, we arrived at this significant milestone—a day we had dreamed of since our early senior high school days. Back then, we promised to graduate and remain together, sharing happiness no matter what. This day was filled with surprises, and I’m incredibly proud of you. I admired your courage as you stood before me, asking to take a photo with your father, a gesture so loving and sincere. To match that, I had the privilege of taking a photo with you and my mom, and it was nothing short of fantastic. It was a day full of love, joy, and unforgettable memories. I cherish it deeply and love you even more for making it so special.')">
+                    <figcaption>
+                        <span class="date-label">May 29, 2024</span>
+                        <p>Our Graduatiopn Day!!</p>
+                    </figcaption>
+                </figure>
+                <figure id="section12">
+                    <img src="images/memories12.jpg" alt="Memory 12" onclick="openModal('images/memories12.jpg', 'And yes, we reached another beautiful milestone in our journey together—our Graduation Ball. It was a day filled with elegance, joy, and love. We both dressed in our finest, making every effort to look our best, and you… you were simply breathtaking. You weren’t just beautiful; you were a masterpiece, a work of art that etched an even deeper love into my heart. That night was truly magical, and having you by my side made it unforgettable.')">
+                    <figcaption>
+                        <span class="date-label">May 17, 2024</span>
+                        <p>Graduation Ball Part 1.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section13">
+                    <img src="images/memories13.jpg" alt="Memory 13" onclick="openModal('images/memories13.jpg', 'That day was a whirlwind of emotions, as we both wished to sit together and be partnered for the event. Watching you paired with someone else stirred a pang of jealousy in me, especially seeing him hold your waist—HAHAHA. But I couldn’t just let it end that way. I worked behind the scenes, using every connection and influence I had earned through my efforts in school to make things right. Finally, the tide turned, and I got my wish. They made it happen, allowing us to share a dance together on the floor—my only dance that night. I avoided my assigned partner entirely, all so I could end the night by your side. That moment was worth every effort, a memory I’ll hold dear forever.')">
+                    <figcaption>
+                        <span class="date-label">May 17, 2024</span>
+                        <p>Graduation Ball Part 2.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section14">
+                    <img src="images/memories14.jpg" alt="Memory 14" onclick="openModal('images/memories14.jpg', 'This day was filled with charm and wonder. We both embraced the chance to relax, making the day even more special. You looked like an angel from every angle, and I found myself completely captivated by your stunning smile. It was a moment I’ll always cherish—your beauty, your presence, everything about you just left me in awe.')">
+                    <figcaption>
+                        <span class="date-label">May 15, 2024</span>
+                        <p>A Cozy Day In Tasty Convenience Store.</p>
+                    </figcaption>
+                </figure>
+                <figure id="section15">
+                    <img src="images/memories15.jpg" alt="Memory 15" onclick="openModal('images/memories15.jpg', 'This day at the Plaza Independencia Museum felt like a dream come true. As we walked together, I couldn’t help but be in awe of you—every step we took, you seemed to shine even brighter. The way you adjusted your side to match mine, the way you smiled and laughed—it all made me realize just how deeply I admire you. Every piece of your life, your grace, your kindness, your strength—it all fills me with an overwhelming sense of love and adoration. Being with you makes every moment feel complete, and I cherish every part of you more than words can say.')">
+                    <figcaption>
+                        <span class="date-label">April 28, 2024</span>
+                        <p>Plaza Independencia Date Part 3.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Modal for Viewing Images -->
+        <div id="modal" class="modal" onclick="closeModal()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modal-image">
+            <div class="description-box" id="modal-description"></div>
+        </div>
+
+        <audio id="ambient-sound" src="sounds/Years.WAV" loop></audio>
+
+        <script>
+            function openModal(imageSrc, captionText) {
+                const modal = document.getElementById("modal");
+                const modalImage = document.getElementById("modal-image");
+                const modalDescription = document.getElementById("modal-description");
+
+                modal.style.display = "flex"; // Change to flex to align items
+                modalImage.src = imageSrc;
+                modalDescription.innerText = captionText; // Set the description text
+            }
+
+            function closeModal() {
+                const modal = document.getElementById("modal");
+                modal.style.display = "none";
+            }
+
+            // Play ambient sound when the page loads
+            window.onload = function() {
+                const ambientSound = document.getElementById("ambient-sound");
+                ambientSound.play().catch(error => {
+                    console.log("Error playing sound:", error);
+                });
+            };
+        </script>
+    </body>
+    </html>
+    

@@ -1,0 +1,204 @@
+/* General Styles */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f0e3;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ffebcd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: #b22222;
+}
+
+/* Button Styles */
+.subpage-button {
+    background-color: #b22222; /* Red color */
+    color: #fff; /* White text */
+    padding: 10px 20px; /* Button padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin: 10px; /* Space between buttons */
+    text-align: center; /* Center align text */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    display: inline-block; /* Ensures proper alignment */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add slight shadow */
+}
+
+.subpage-button:hover {
+    background-color: #8b0000; /* Darker red on hover */
+}
+
+/* Message Section */
+#message {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* Gallery Styles */
+#gallery {
+    padding: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+figure {
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+figcaption {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.date-label {
+    font-weight: bold;
+}
+
+/* Floating Description Box */
+.floating-description {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+/* Glow Effect */
+.glow {
+    animation: glow-animation 1s infinite alternate;
+}
+
+@keyframes glow-animation {
+    0% {
+        box-shadow: 0 0 5px #f00;
+    }
+    100% {
+        box-shadow: 0 0 20px #f00;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.caption {
+    margin: auto;
+    display: block;
+    text-align: center;
+    color: #fff;
+    width: 80%;
+    margin-top: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Subpage Specific Styles */
+.subpage-header {
+    background-color: #ffebcd;
+    padding: 30px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subpage-header h1 {
+    font-size: 2.2em;
+}
+
+.subpage-content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    #message {
+        font-size: 1.1em;
+        padding: 15px;
+    }
+    .subpage-header h1 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    #message {
+        font-size: 1em;
+        padding: 10px;
+    }
+}

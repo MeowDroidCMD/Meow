@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery of Memories</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f0e3;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #ffebcd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #b22222;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .folder-icon {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .folder-icon img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .folder-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .folder-content {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .folder-content img {
+            width: 150px;
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .folder-content img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            text-align: center;
+            color: #fff;
+            width: 80%;
+            margin-top: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Button Styles */
+        .subpage-button, .back-button {
+            background-color: #b22222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.3s ease;
+            margin: 10px;
+        }
+
+        .subpage-button:hover, .back-button:hover {
+            background-color: #ff7f7f;
+            box-shadow: 0 0 10px rgba(255, 127, 127, 0.8);
+        }
+
+        .subpage-button:active, .back-button:active {
+            transform: scale(0.9);
+            transition: transform 0.1s ease;
+        }
+
+        .subpage-button, .back-button {
+            animation: pop 0.3s ease forwards;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Subpage Specific Styles */
+        .subpage-header {
+            background-color: #ffebcd;
+            padding: 30px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .subpage-header h1 {
+            font-size: 2.2em;
+        }
+
+        .subpage-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .folder-icon img {
+                width: 120px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            .subpage-header h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .folder-icon img {
+                width: 100px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Gallery Of Memories</h1>
+        <p>Memories stored beautifully in time</p>
+    </header>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="folder-icon" onclick="toggleFolder('folder1')">
+            <img src="images/Letter.png.png" alt="Folder Icon">
+            <p>Click Me Langga</p>
+        </div>
+        <div class="folder-content" id="folder1">
+            <img src="images/1.jpg" alt="Image 1" onclick="openModal('images/1.jpg')">
+            <img src="images/2.jpg" alt="Image 2" onclick="openModal('images/2.jpg')">
+            <img src="images/3.jpg" alt="Image 3" onclick="openModal('images/3.jpg')">
+            <img src="images/4.jpg" alt="Image 1" onclick="openModal('images/4.jpg')">
+            <img src="images/5.jpg" alt="Image 2" onclick="openModal('images/5.jpg')">
+            <img src="images/6.jpg" alt="Image 1" onclick="openModal('images/6.jpg')">
+            <img src="images/7.jpg" alt="Image 2" onclick="openModal('images/7.jpg')">
+            <img src="images/8.jpg" alt="Image 3" onclick="openModal('images/8.jpg')">
+            <img src="images/9.jpg" alt="Image 1" onclick="openModal('images/9.jpg')">
+            <img src="images/10.jpg" alt="Image 2" onclick="openModal('images/10.jpg')">
+            <img src="images/11.jpg" alt="Image 11" onclick="openModal('images/11.jpg')">
+            <img src="images/12.jpg" alt="Image 12" onclick="openModal('images/12.jpg')">
+            <img src="images/13.jpg" alt="Image 13" onclick="openModal('images/13.jpg')">
+            <img src="images/14.jpg" alt="Image 14" onclick="openModal('images/14.jpg')">
+            <img src="images/15.jpg" alt="Image 15" onclick="openModal('images/15.jpg')">
+            <img src="images/16.jpg" alt="Image 16" onclick="openModal('images/16.jpg')">
+            <img src="images/17.jpg" alt="Image 17" onclick="openModal('images/17.jpg')">
+            <img src="images/18.jpg" alt="Image 18" onclick="openModal('images/18.jpg')">
+            <img src="images/19.jpg" alt="Image 19" onclick="openModal('images/19.jpg')">
+            <img src="images/20.jpg" alt="Image 20" onclick="openModal('images/20.jpg')">
+            <img src="images/21.jpg" alt="Image 21" onclick="openModal('images/21.jpg')">
+            <img src="images/22.jpg" alt="Image 22" onclick="openModal('images/22.jpg')">
+            <img src="images/23.jpg" alt="Image 23" onclick="openModal('images/23.jpg')">
+            <img src="images/24.jpg" alt="Image 24" onclick="openModal('images/24.jpg')">
+            <img src="images/25.jpg" alt="Image 25" onclick="openModal('images/25.jpg')">
+            <img src="images/26.jpg" alt="Image 26" onclick="openModal('images/26.jpg')">
+            <img src="images/27.jpg" alt="Image 27" onclick="openModal('images/27.jpg')">
+            <img src="images/28.jpg" alt="Image 28" onclick="openModal('images/28.jpg')">
+            <img src="images/29.jpg" alt="Image 29" onclick="openModal('images/29.jpg')">
+            <img src="images/30.jpg" alt="Image 30" onclick="openModal('images/30.jpg')">
+            <img src="images/31.jpg" alt="Image 31" onclick="openModal('images/31.jpg')">
+            <img src="images/32.jpg" alt="Image 32" onclick="openModal('images/32.jpg')">
+            <img src="images/33.jpg" alt="Image 33" onclick="openModal('images/33.jpg')">
+            <img src="images/34.jpg" alt="Image 34" onclick="openModal('images/34.jpg')">
+            <img src="images/35.jpg" alt="Image 35" onclick="openModal('images/35.jpg')">
+            <img src="images/36.jpg" alt="Image 36" onclick="openModal('images/36.jpg')">
+            <img src="images/37.jpg" alt="Image 37" onclick="openModal('images/37.jpg')">
+            <img src="images/38.jpg" alt="Image 38" onclick="openModal('images/38.jpg')">
+            <img src="images/39.jpg" alt="Image 39" onclick="openModal('images/39.jpg')">
+            <img src="images/40.jpg" alt="Image 40" onclick="openModal('images/40.jpg')">
+            <img src="images/41.jpg" alt="Image 41" onclick="openModal('images/41.jpg')">
+            <img src="images/42.jpg" alt="Image 42" onclick="openModal('images/42.jpg')">
+            <img src="images/43.jpg" alt="Image 43" onclick="openModal('images/43.jpg')">
+            <img src="images/44.jpg" alt="Image 44" onclick="openModal('images/44.jpg')">
+            <img src="images/45.jpg" alt="Image 45" onclick="openModal('images/45.jpg')">
+            <img src="images/46.jpg" alt="Image 46" onclick="openModal('images/46.jpg')">
+            <img src="images/47.jpg" alt="Image 47" onclick="openModal('images/47.jpg')">
+            <img src="images/48.jpg" alt="Image 48" onclick="openModal('images/48.jpg')">
+            <img src="images/49.jpg" alt="Image 49" onclick="openModal('images/49.jpg')">
+            <img src="images/50.jpg" alt="Image 50" onclick="openModal('images/50.jpg')">
+            <img src="images/51.jpg" alt="Image 51" onclick="openModal('images/51.jpg')">
+            <img src="images/52.jpg" alt="Image 52" onclick="openModal('images/52.jpg')">
+            <img src="images/53.jpg" alt="Image 53" onclick="openModal('images/53.jpg')">
+            <img src="images/54.jpg" alt="Image 54" onclick="openModal('images/54.jpg')">
+            <img src="images/55.jpg" alt="Image 55" onclick="openModal('images/55.jpg')">
+            <img src="images/56.jpg" alt="Image 56" onclick="openModal('images/56.jpg')">
+            <img src="images/57.jpg" alt="Image 57" onclick="openModal('images/57.jpg')">
+            <img src="images/58.jpg" alt="Image 58" onclick="openModal('images/58.jpg')">
+            <img src="images/59.jpg" alt="Image 59" onclick="openModal('images/59.jpg')">
+            <img src="images/60.jpg" alt="Image 60" onclick="openModal('images/60.jpg')">
+            <img src="images/61.jpg" alt="Image 61" onclick="openModal('images/61.jpg')">
+            <img src="images/62.jpg" alt="Image 62" onclick="openModal('images/62.jpg')">
+            <img src="images/63.jpg" alt="Image 63" onclick="openModal('images/63.jpg')">
+            <img src="images/64.jpg" alt="Image 64" onclick="openModal('images/64.jpg')">
+            <img src="images/65.jpg" alt="Image 65" onclick="openModal('images/65.jpg')">
+            <img src="images/66.jpg" alt="Image 66" onclick="openModal('images/66.jpg')">
+            <img src="images/67.jpg" alt="Image 67" onclick="openModal('images/67.jpg')">
+            <img src="images/68.jpg" alt="Image 68" onclick="openModal('images/68.jpg')">
+            <img src="images/69.jpg" alt="Image 69" onclick="openModal('images/69.jpg')">
+            <img src="images/70.jpg" alt="Image 70" onclick="openModal('images/70.jpg')">
+            <img src="images/71.jpg" alt="Image 71" onclick="openModal('images/71.jpg')">
+            <img src="images/72.jpg" alt="Image 72" onclick="openModal('images/72.jpg')">
+            <img src="images/73.jpg" alt="Image 73" onclick="openModal('images/73.jpg')">
+            <img src="images/74.jpg" alt="Image 74" onclick="openModal('images/74.jpg')">
+            <img src="images/75.jpg" alt="Image 75" onclick="openModal('images/75.jpg')">
+            <img src="images/76.jpg" alt="Image 76" onclick="openModal('images/76.jpg')">
+            <img src="images/77.jpg" alt="Image 77" onclick="openModal('images/77.jpg')">
+            <img src="images/78.jpg" alt="Image 78" onclick="openModal('images/78.jpg')">
+            <img src="images/79.jpg" alt="Image 79" onclick="openModal('images/79.jpg')">
+            <img src="images/80.jpg" alt="Image 80" onclick="openModal('images/80.jpg')">
+            <img src="images/81.jpg" alt="Image 81" onclick="openModal('images/81.jpg')">
+            <img src="images/82.jpg" alt="Image 82" onclick="openModal('images/82.jpg')">
+            <img src="images/83.jpg" alt="Image 83" onclick="openModal('images/83.jpg')">
+            <img src="images/84.jpg" alt="Image 84" onclick="openModal('images/84.jpg')">
+            <img src="images/85.jpg" alt="Image 85" onclick="openModal('images/85.jpg')">
+            <img src="images/86.jpg" alt="Image 86" onclick="openModal('images/86.jpg')">
+            <img src="images/87.jpg" alt="Image 87" onclick="openModal('images/87.jpg')">
+            <img src="images/88.jpg" alt="Image 88" onclick="openModal('images/88.jpg')">
+            <img src="images/89.jpg" alt="Image 89" onclick="openModal('images/89.jpg')">
+            <img src="images/90.jpg" alt="Image 90" onclick="openModal('images/90.jpg')">
+            <img src="images/91.jpg" alt="Image 91" onclick="openModal('images/91.jpg')">
+            <img src="images/92.jpg" alt="Image 92" onclick="openModal('images/92.jpg')">
+            <img src="images/93.jpg" alt="Image 93" onclick="openModal('images/93.jpg')">
+            <img src="images/94.jpg" alt="Image 94" onclick="openModal('images/94.jpg')">
+            <img src="images/95.jpg" alt="Image 95" onclick="openModal('images/95.jpg')">
+            <img src="images/96.jpg" alt="Image 96" onclick="openModal('images/96.jpg')">
+            <img src="images/97.jpg" alt="Image 97" onclick="openModal('images/97.jpg')">
+            <img src="images/98.jpg" alt="Image 98" onclick="openModal('images/98.jpg')">
+            <img src="images/99.jpg" alt="Image 99" onclick="openModal('images/99.jpg')">
+            <img src="images/100.jpg" alt="Image 100" onclick="openModal('images/100.jpg')">
+            <img src="images/101.jpg" alt="Image 101" onclick="openModal('images/101.jpg')">
+            <img src="images/102.jpg" alt="Image 102" onclick="openModal('images/102.jpg')">
+            <img src="images/103.jpg" alt="Image 103" onclick="openModal('images/103.jpg')">
+            <img src="images/104.jpg" alt="Image 104" onclick="openModal('images/104.jpg')">
+            <img src="images/105.jpg" alt="Image 105" onclick="openModal('images/105.jpg')">
+            <img src="images/106.jpg" alt="Image 106" onclick="openModal('images/106.jpg')">
+            <img src="images/107.jpg" alt="Image 107" onclick="openModal('images/107.jpg')">
+            <img src="images/108.jpg" alt="Image 108" onclick="openModal('images/108.jpg')">
+            <img src="images/109.jpg" alt="Image 109" onclick="openModal('images/109.jpg')">
+            <img src="images/110.jpg" alt="Image 110" onclick="openModal('images/110.jpg')">
+            <img src="images/111.jpg" alt="Image 111" onclick="openModal('images/111.jpg')">
+            <img src="images/112.jpg" alt="Image 112" onclick="openModal('images/112.jpg')">
+            <img src="images/113.jpg" alt="Image 113" onclick="openModal('images/113.jpg')">
+            <img src="images/114.jpg" alt="Image 114" onclick="openModal('images/114.jpg')">
+            <img src="images/115.jpg" alt="Image 115" onclick="openModal('images/115.jpg')">
+            <img src="images/116.jpg" alt="Image 116" onclick="openModal('images/116.jpg')">
+            <img src="images/117.jpg" alt="Image 117" onclick="openModal('images/117.jpg')">
+
+        </div>
+    </section>
+
+    <!-- Modal for displaying images -->
+    <div class="modal" id="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="caption"></div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="subpage-content">
+        <button class="back-button" onclick="location.href='index.html'">Back to Gallery</button>
+    </div>
+
+    <script>
+        function toggleFolder(folderId) {
+            const folderContent = document.getElementById(folderId);
+            folderContent.style.display = folderContent.style.display === "block" ? "none" : "block";
+        }
+
+        function openModal(imageSrc) {
+            const modal = document.getElementById("modal");
+            const modalImage = document.getElementById("modalImage");
+
+            modal.style.display = "block";
+            modalImage.src = imageSrc;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
